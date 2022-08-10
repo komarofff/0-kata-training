@@ -1,7 +1,10 @@
 <script>
-decodeMorse = function(morseCode){
+decodeMorse = function(morseCode = '... --- ...' ){
   //your code here
-  var ref = { 
+  const pairs = { 
+    '......':'.',
+    '--..--': '!',
+    '...---...':'SOS',
     '.-':     'A',
     '-...':   'B',
     '-.-.':   'C',
@@ -39,13 +42,25 @@ decodeMorse = function(morseCode){
     '----.':  '9',
     '-----':  '0',
   };
+  let code = morseCode.split(' ')
+  let IndexSosInCode = code.indexOf('...---...')
+  if(IndexSosInCode != -1){
+    code.splice(IndexSosInCode+1,0,'--..--')
+   
+    morseCode= code.join(' ')
+    morseCode = morseCode.concat('......')
+  }
+  console.log('morseCode=',morseCode)  
   return morseCode
     .split('   ')
     .map(
       a => a.split(' ').map(
-          b => ref[b]
-        ).join('') ).join(' ');
+          b => pairs[b]
+        ).join('') ).join(' ').trim();
+    
 }
+
+
 
 
 
