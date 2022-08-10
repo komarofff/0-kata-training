@@ -1,0 +1,17 @@
+<script>
+function findOdd(A) {
+  const counts = {};
+//const sampleArray = [20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5];
+A.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+let result = null
+Object.keys(counts).forEach(function(key) {
+  console.log(key, ':', this[key]);
+  if(this[key] %2 !== 0 )result = key
+  
+}, counts);
+console.log('res=',result)
+  return parseInt(result)
+}
+  
+ console.log( findOdd([20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5]))
+</script>

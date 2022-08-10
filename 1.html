@@ -1,0 +1,32 @@
+<script>
+function isValidWalk(walk) {
+  //insert brilliant code here
+  let pairs = {
+    'n':'s',
+    's':'n',
+    'w':'e',
+    'e':'w'
+  }
+ const chunkSize = 5;
+let subarray = []; //массив в который будет выведен результат.
+for (let i = 0; i <Math.ceil(walk.length/chunkSize); i++){
+    subarray[i] = walk.slice((i*chunkSize), (i*chunkSize) + chunkSize);
+}
+let reverseWay = subarray.map(el => el.map(val => pairs[val]))
+console.log('0=', walk)
+   console.log('1=', subarray[0])
+   console.log('2=', subarray[1])
+   console.log('3',reverseWay[0])   
+   
+  if(walk.length != 10){
+    return false
+  }
+  else if(walk.length == 10 && (JSON.stringify(reverseWay[0]) == JSON.stringify(subarray[1])) ){
+    return true
+  }else{return false}
+  
+  
+}
+  
+ console.log( isValidWalk(['n','s','n','s','n','s','n','s','n','s']))
+</script>
